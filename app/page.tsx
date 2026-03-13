@@ -1,3 +1,6 @@
+'use client'
+import { useScrollAnimation } from '@/hooks/useScrollAnimation'
+
 /* eslint-disable @next/next/no-html-link-for-pages */
 /* eslint-disable react/jsx-no-comment-textnodes */
 import Image from 'next/image'
@@ -5,6 +8,7 @@ import Link from 'next/link'
 import { FaGithub } from 'react-icons/fa'
 
 export default function Home() {
+  useScrollAnimation()
   return (
     <div className="bg-white">
       <header className="border-b border-gray-200 ">
@@ -60,8 +64,8 @@ export default function Home() {
         </div>
       </header>
       <main className="flex flex-col items-center justify-center">
-        {/* About */}
-        <section className="items-center min-h-[80vh] flex flex-col items-center justify-center text-center max-w-4xl mx-auto py-20">
+        {/* Home */}
+        <section className="scroll-section items-center min-h-[80vh] flex flex-col items-center justify-center text-center max-w-4xl mx-auto py-20">
           <h1 className="text-6xl sm:text-7xl font-bold mb-4">{`Hi, I'm Diego`}</h1>
           <h2 className="text-2xl text-gray-700 mb-8">
             Full Stack Web Developer | Product Engineer
@@ -86,35 +90,179 @@ export default function Home() {
             </button>
           </div>
         </section>
-        {/* PONER HOME, PROJECTS, ABOUT ME Y ULTIMO CONACT MEProjects */}
-        <section className="w-full flex justify-center">
-          <div className="max-w-5xl w-full">
-            <h3 className="mb-6 text-xl font-semibold">
-              Flou – Personal Finance App
-            </h3>
+        {/* Projects */}
+        <section className="scroll-section w-full flex flex-col py-15 px-40">
+          <h2 className="flex text-2xl font-medium mb-6">Projects</h2>
 
-            <div className="relative w-full aspect-[16/10] rounded-2xl border border-gray-200 overflow-hidden">
-              {/* <Image
-                src="/img/flou-hero.png"
-                alt="Flou app"
-                fill
-                className="object-contain"
-                sizes="(max-width: 1200px) 100vw, 1200px"
-                priority
-              /> */}
-              <iframe
-                src="https://flouapp.vercel.app"
-                className="w-full h-[700px] rounded-2xl border border-gray-200"
-              ></iframe>
+          <div className=" w-full border-t border-gray-300 pt-10 mb-50">
+            <div className="flex flex-row gap-4">
+              <p className="text-3xl text-gray-600">01</p>
+              <h3 className="mb-8 text-6xl font-semibold">
+                Flou – Personal Finance App
+              </h3>
+            </div>
+            <div className="grid grid-cols-2 gap-10 w-full">
+              <div className="relative w-full aspect-[16/10]  border border-gray-200 overflow-hidden">
+                <Image
+                  src="/img/flou-hero.png"
+                  alt="Flou app"
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 1200px) 100vw, 1200px"
+                  priority
+                />
+              </div>
+              <div>
+                <p className="text-xl">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Reprehenderit sit nemo fugiat iure consequatur in ad itaque
+                  expedita quam voluptates et, fuga, beatae sed possimus
+                  exercitationem, incidunt nulla! Nisi, optio. Lorem ipsum dolor
+                  sit amet consectetur adipisicing elit. Quas, est tempora,
+                  repudiandae totam aspernatur quo eligendi sed reprehenderit
+                  dicta obcaecati quasi quidem, blanditiis pariatur et a. A,
+                  soluta magnam. Ut.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className=" w-full border-t border-gray-300 pt-10">
+            <div className="flex flex-row gap-4">
+              <p className="text-3xl text-gray-600">02</p>
+              <h3 className="mb-8 text-6xl font-semibold">
+                INDUPSA – Sales Dashboard
+              </h3>
+            </div>
+            <div className="grid grid-cols-2 gap-10 w-full">
+              <div className="relative w-full aspect-[16/10] border border-gray-200 overflow-hidden">
+                <Image
+                  src="/img/flou-hero.png"
+                  alt="Flou app"
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 1200px) 100vw, 1200px"
+                  priority
+                />
+              </div>
+              <div>
+                <p className="text-xl">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Reprehenderit sit nemo fugiat iure consequatur in ad itaque
+                  expedita quam voluptates et, fuga, beatae sed possimus
+                  exercitationem, incidunt nulla! Nisi, optio. Lorem ipsum dolor
+                  sit amet consectetur adipisicing elit. Quas, est tempora,
+                  repudiandae totam aspernatur quo eligendi sed reprehenderit
+                  dicta obcaecati quasi quidem, blanditiis pariatur et a. A,
+                  soluta magnam. Ut.
+                </p>
+              </div>
             </div>
           </div>
         </section>
+        {/* About me */}
+        <section className="scroll-section w-full flex flex-col py-15 px-40">
+          <h2 className="flex text-2xl font-medium mb-6">About me</h2>
+          <p className="text-xl">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Reprehenderit sit nemo fugiat iure consequatur in ad itaque expedita
+            quam voluptates et, fuga, beatae sed possimus exercitationem,
+            incidunt nulla! Nisi, optio. Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Quas, est tempora, repudiandae totam aspernatur
+            quo eligendi sed reprehenderit dicta obcaecati quasi quidem,
+            blanditiis pariatur et a. A, soluta magnam. Ut.
+          </p>
+        </section>
+
         {/* Contact */}
-        <section></section>
+        <section className="scroll-section items-center min-h-[80vh] flex flex-col items-center justify-center text-center max-w-4xl mx-auto py-20">
+          <h1 className="text-6xl sm:text-7xl font-bold mb-10">{`Let's Work Together`}</h1>
+
+          <form
+            className="flex flex-col gap-0.5"
+            action="https://formspree.io/f/meerkvan"
+            method="POST"
+          >
+            <label className="text-left font-medium text-gray-700">
+              First Name
+            </label>
+            <input
+              className="rounded-lg border-[1.5px] border-gray-300 h-10 mb-2 p-2 focus:outline-none focus:ring-2 focus:ring-gray-400"
+              name="name"
+              id="name"
+              type="text"
+            />
+            <label className="text-left font-medium text-gray-700">Email</label>
+            <input
+              className="rounded-lg border-[1.5px] border-gray-300 h-10 mb-2 p-2 focus:outline-none focus:ring-2 focus:ring-gray-400"
+              name="email"
+              id="email"
+              type="email"
+            />
+            <label className="text-left font-medium text-gray-700">
+              What are you building?
+            </label>
+            <input
+              className="rounded-lg border-[1.5px] border-gray-300 h-10 mb-2 p-2 focus:outline-none focus:ring-2 focus:ring-gray-400"
+              name="q1"
+              id="q1"
+              type="text"
+            />
+            <label className="text-left font-medium text-gray-700">
+              Where are you right now?
+            </label>
+            <select
+              className="rounded-lg border-[1.5px] border-gray-300 h-10 mb-2 p-2 focus:outline-none focus:ring-2 focus:ring-gray-400"
+              name="q2"
+              id="q2"
+            >
+              <option value="idea">Just an idea</option>
+              <option value="prototype">Already have a prototype</option>
+              <option value="concept">Validated concept</option>
+              <option value="users">Have paying users</option>
+            </select>
+
+            <div className="flex flex-col gap-1 mt-4">
+              <button className="inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-700 transition-colors duration-300 ">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  fill="#ffffff"
+                  viewBox="0 0 256 256"
+                >
+                  <path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48Zm-96,85.15L52.57,64H203.43ZM98.71,128,40,181.81V74.19Zm11.84,10.85,12,11.05a8,8,0,0,0,10.82,0l12-11.05,58,53.15H52.57ZM157.29,128,216,74.18V181.82Z"></path>
+                </svg>
+                Get in Touch
+              </button>
+            </div>
+            <p className="text-gray-400 text-sm italic">
+              I typically respond within 24 hours
+            </p>
+          </form>
+        </section>
       </main>
-      <footer className="w-full max-w-7xl mx-auto px-4 py-8 text-center text-sm text-gray-500 font-outfit">
+      <style jsx>{`
+        .scroll-section {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        .scroll-section.animate {
+          animation: fade-in 0.4s ease-out 0s 1 normal forwards running;
+        }
+        @keyframes fade-in {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
+      {/* <footer className="w-full max-w-7xl mx-auto px-4 py-8 text-center text-sm text-gray-500 font-outfit">
         <p>© 2026 Diego Baca. All rights reserved.</p>
-      </footer>
+      </footer> */}
     </div>
   )
 }
