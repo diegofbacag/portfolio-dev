@@ -48,6 +48,18 @@ export default function Home() {
     return () => observers.forEach((o) => o.disconnect())
   }, [])
 
+  const [showArrow, setShowArrow] = useState(true)
+  const [floating, setFloating] = useState(false)
+  useEffect(() => {
+    const handleScroll = () => {
+      setFloating(window.scrollY > 50)
+      setShowArrow(window.scrollY < 100)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   const scrollToRef = (ref) => {
     if (ref === contactRef) {
       ref.current?.scrollIntoView({ behavior: 'smooth' })
@@ -58,7 +70,6 @@ export default function Home() {
       ref.current?.getBoundingClientRect().top + window.scrollY - offset
     window.scrollTo({ top, behavior: 'smooth' })
   }
-  const [floating, setFloating] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -188,7 +199,7 @@ export default function Home() {
         {/* Home */}
         <section
           ref={homeRef}
-          className="scroll-section items-center min-h-[83vh] flex flex-col items-center justify-center text-center max-w-4xl mx-auto py-20"
+          className="scroll-section items-center min-h-[85vh] flex flex-col items-center justify-center text-center max-w-4xl mx-auto py-20"
         >
           <h1 className="text-6xl sm:text-7xl font-bold mb-4">{`Hi, I'm Diego`}</h1>
           <h2 className="text-2xl text-gray-700 mb-8">
@@ -218,20 +229,19 @@ export default function Home() {
               View Projects
             </button>
           </div>
-          {/* AGREGAR FLECHA QUE SENALE HACIA ABAJO Y QUE BRILLE Y SE APAGUE */}
         </section>
         {/* Projects */}
         <section
           ref={projectsRef}
           className="scroll-section w-full flex flex-col py-15 px-40 mb-20"
         >
-          <h2 className="flex text-2xl font-medium mb-6">Projects</h2>
+          <h2 className="flex text-3xl font-medium mb-6">Projects</h2>
 
           <div className=" w-full border-t border-gray-300 pt-10 mb-50">
             <div className="flex flex-row gap-4">
               <p className="text-3xl text-gray-600">01</p>
-              <h3 className="mb-8 text-6xl font-semibold">
-                Flou – Personal Finance App
+              <h3 className="mb-10 text-6xl font-semibold">
+                Flou – Personal Finance Web App
               </h3>
             </div>
             <div className="grid grid-cols-2 gap-10 w-full">
@@ -245,25 +255,77 @@ export default function Home() {
                   priority
                 />
               </div>
-              <div>
-                <p className="text-xl">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Reprehenderit sit nemo fugiat iure consequatur in ad itaque
-                  expedita quam voluptates et, fuga, beatae sed possimus
-                  exercitationem, incidunt nulla! Nisi, optio. Lorem ipsum dolor
-                  sit amet consectetur adipisicing elit. Quas, est tempora,
-                  repudiandae totam aspernatur quo eligendi sed reprehenderit
-                  dicta obcaecati quasi quidem, blanditiis pariatur et a. A,
-                  soluta magnam. Ut.
+              <div className="text-lg">
+                <p className="text-lg  text-gray-700 leading-relaxed max-w-4xl mx-auto ">
+                  Many young professionals earn decent money but still reach the
+                  end of the month wondering where it all went. Without a clear
+                  picture of their spending, building financial habits feels
+                  impossible.
                 </p>
+                <br />
+
+                <p className="text-lg  text-gray-700 leading-relaxed max-w-4xl mx-auto ">
+                  Flou is a personal finance web app built for 25–35 year olds
+                  who want to stop guessing and start making intentional
+                  decisions with their money. It gives users a simple, visual
+                  way to track transactions and build a conscious spending plan.
+                </p>
+                <br />
+                <p className="text-lg  text-gray-700 leading-relaxed max-w-4xl mx-auto ">
+                  Built with Next.js, TypeScript, Prisma, and deployed on
+                  Vercel.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className=" w-full border-t border-gray-300 pt-10 mb-50">
+            <div className="flex flex-row gap-4">
+              <p className="text-3xl text-gray-600">02</p>
+              <h3 className="mb-10 text-6xl font-semibold">
+                ADO – Restaurant Payment Reconciliation Tool
+              </h3>
+            </div>
+            <div className="grid grid-cols-2 gap-10 w-full">
+              <div className="relative w-full aspect-[16/10]  border border-gray-200 overflow-hidden">
+                <Image
+                  src="/img/flou-hero.png"
+                  alt="Flou app"
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 1200px) 100vw, 1200px"
+                  priority
+                />
+              </div>
+              <div className="text-lg">
+                <p className="text-lg  text-gray-700 leading-relaxed max-w-4xl mx-auto ">
+                  Restaurant owners using delivery platforms like Rappi,
+                  PedidosYa, and Uber Eats often leave money on the table
+                  without ever knowing it. Between their own sales reports,
+                  delivery app statements, and bank transactions, small
+                  discrepancies pile up quietly and go unnoticed.
+                </p>
+                <br />
+                <p className="text-lg  text-gray-700 leading-relaxed max-w-4xl mx-auto ">
+                  ADO is a web app that brings all those numbers into one place
+                  and automatically flags misalignments. When a discrepancy is
+                  found, restaurant owners have everything they need to dispute
+                  wrongful user complaints, challenge incorrect charges, and
+                  recover payments that should have landed in their account.
+                </p>
+                <br />
+                <p className="text-lg text-gray-700 leading-relaxed max-w-4xl mx-auto ">
+                  Currently in active development alongside a restaurant owner
+                  client, building toward launch.
+                </p>
+                <br />
               </div>
             </div>
           </div>
           <div className=" w-full border-t border-gray-300 pt-10">
             <div className="flex flex-row gap-4">
-              <p className="text-3xl text-gray-600">02</p>
-              <h3 className="mb-8 text-6xl font-semibold">
-                INDUPSA – Sales Dashboard
+              <p className="text-3xl text-gray-600">03</p>
+              <h3 className="mb-10 text-6xl font-semibold">
+                INDUPSA Sales Dashboard – Internal Business Intelligence Tool
               </h3>
             </div>
             <div className="grid grid-cols-2 gap-10 w-full">
@@ -277,16 +339,27 @@ export default function Home() {
                   priority
                 />
               </div>
-              <div>
-                <p className="text-xl">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Reprehenderit sit nemo fugiat iure consequatur in ad itaque
-                  expedita quam voluptates et, fuga, beatae sed possimus
-                  exercitationem, incidunt nulla! Nisi, optio. Lorem ipsum dolor
-                  sit amet consectetur adipisicing elit. Quas, est tempora,
-                  repudiandae totam aspernatur quo eligendi sed reprehenderit
-                  dicta obcaecati quasi quidem, blanditiis pariatur et a. A,
-                  soluta magnam. Ut.
+              <div className="text-lg">
+                <p className="text-lg  text-gray-700 leading-relaxed max-w-4xl mx-auto ">
+                  The sales team at INDUPSA was running their entire operation
+                  on Excel. Reports were built manually, files were slow and
+                  hard to navigate, and there was no clear view of how the team
+                  was performing or what stock was available. Decisions were
+                  being made on outdated information.
+                </p>
+                <br />
+                <p className="text-lg  text-gray-700 leading-relaxed max-w-4xl mx-auto ">
+                  The dashboard replaced all of that. Built in Power BI with a
+                  SQL data pipeline, it brings together sales metrics, stock
+                  availability, team performance, and earnings in one live,
+                  always-updated view. The finance head, sales manager, and
+                  sales team all operate from it daily.
+                </p>
+                <br />
+                <p className="text-lg  text-gray-700 leading-relaxed max-w-4xl mx-auto ">
+                  The team fully ditched Excel. They now have real visibility
+                  into their goals, faster access to the numbers that matter,
+                  and the ability to make decisions based on live data.
                 </p>
               </div>
             </div>
@@ -295,17 +368,27 @@ export default function Home() {
         {/* About me */}
         <section
           ref={aboutRef}
-          className="scroll-section w-full flex flex-col py-15 px-40"
+          className="scroll-section w-full flex flex-col py-15 px-40 text-lg items-center"
         >
-          <h2 className="flex text-2xl font-medium mb-6">About me</h2>
-          <p className="text-xl">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Reprehenderit sit nemo fugiat iure consequatur in ad itaque expedita
-            quam voluptates et, fuga, beatae sed possimus exercitationem,
-            incidunt nulla! Nisi, optio. Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Quas, est tempora, repudiandae totam aspernatur
-            quo eligendi sed reprehenderit dicta obcaecati quasi quidem,
-            blanditiis pariatur et a. A, soluta magnam. Ut.
+          <h2 className="text-4xl font-bold  mb-16">About Me</h2>
+
+          <p className="text-lg text-center text-gray-700 leading-relaxed max-w-4xl mx-auto mb-6">
+            I'm a product engineer based in Lima, Peru, with a background that
+            spans finance, data, and full stack development. That mix is
+            intentional. I don't just build, I help you figure out what's worth
+            building in the first place.
+          </p>
+          <br />
+          <p className="text-lg text-center text-gray-700 leading-relaxed max-w-4xl mx-auto mb-6">
+            I work with non-technical founders because the MVP phase is where
+            most ideas either take off or quietly die. My job is to make sure
+            yours lands. I focus on understanding the real problem, running lean
+            experiments, and delivering a product that's been thought through,
+            not just coded up.
+          </p>
+          <br />
+          <p className="text-lg text-center text-gray-700 leading-relaxed max-w-4xl mx-auto ">
+            End to end. From first idea to working product.
           </p>
         </section>
 
@@ -399,6 +482,21 @@ export default function Home() {
           }
         }
       `}</style>
+      <style>{`
+  @keyframes bounce-fade {
+    0%, 100% {
+      transform: translateY(0);
+      opacity: 0.3;
+    }
+    50% {
+      transform: translateY(10px);
+      opacity: 1;
+    }
+  }
+  .bounce-fade {
+    animation: bounce-fade 1.2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  }
+`}</style>
       {/* <footer className="w-full max-w-7xl mx-auto px-4 py-8 text-center text-sm text-gray-500 font-outfit">
         <p>© 2026 Diego Baca. All rights reserved.</p>
       </footer> */}
