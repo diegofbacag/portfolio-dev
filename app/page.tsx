@@ -5,32 +5,129 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation'
 /* eslint-disable react/jsx-no-comment-textnodes */
 import Image from 'next/image'
 import Link from 'next/link'
+import { Ref, useEffect, useRef, useState } from 'react'
 import { FaGithub } from 'react-icons/fa'
 
 export default function Home() {
+  const homeRef = useRef(null)
+  const projectsRef = useRef(null)
+  const aboutRef = useRef(null)
+  const contactRef = useRef(null)
+
+  const [activeSection, setActiveSection] = useState('home')
+
+  useEffect(() => {
+    const observers = []
+    const refs = {
+      home: homeRef,
+      about: aboutRef,
+      projects: projectsRef,
+      contact: contactRef,
+    }
+
+    Object.entries(refs).forEach(([key, ref]) => {
+      if (!ref.current) return
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            if (key === 'contact') {
+              setActiveSection(null) // clears active when contact is visible
+            } else {
+              setActiveSection(key)
+            }
+          }
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -60% 0px' },
+      )
+
+      observer.observe(ref.current)
+      observers.push(observer)
+    })
+
+    return () => observers.forEach((o) => o.disconnect())
+  }, [])
+
+  const scrollToRef = (ref) => {
+    if (ref === contactRef) {
+      ref.current?.scrollIntoView({ behavior: 'smooth' })
+      return
+    }
+    const offset = 60
+    const top =
+      ref.current?.getBoundingClientRect().top + window.scrollY - offset
+    window.scrollTo({ top, behavior: 'smooth' })
+  }
+  const [floating, setFloating] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setFloating(window.scrollY > 50)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   useScrollAnimation()
   return (
     <div className="bg-white">
-      <header className="border-b border-gray-200 ">
-        <div className="flex flex-row justify-between items-center max-w-7xl mx-auto p-4 ">
-          <Link href={'/'} className="text-xl font-bold hover:opacity-80">
+      <header
+        className={`fixed top-0 left-1/2 -translate-x-1/2 z-50 transition-all duration-300
+    ${
+      floating
+        ? 'top-4 w-[60%] rounded-full bg-white/80 backdrop-blur-md shadow-lg border border-gray-200/50'
+        : 'w-full border-b border-gray-200 bg-white'
+    }`}
+      >
+        <div
+          className={`flex flex-row justify-between items-center max-w-7xl mx-auto transition-all duration-300
+    ${floating ? 'px-6 py-2' : 'p-4'}
+  `}
+        >
+          <Link
+            href={'/'}
+            className="text-xl font-bold hover:opacity-80"
+            onClick={() => {
+              scrollToRef(homeRef)
+            }}
+          >
             <p>Diego Baca</p>
           </Link>
-          <nav className="hidden md:flex flex-1 justify-center items-center">
+          <nav className="hidden md:flex flex-1 justify-center items-center z-9">
             <div className="bg-gray-100 rounded-full px-1.5 py-1.5 flex items-center gap-2">
-              <div className="flex items-center justify-center py-1 w-28 rounded-full gap-1.5 text-gray-600">
+              <div
+                className={`flex items-center justify-center py-1 w-28 rounded-full gap-1.5 text-gray-600 cursor-pointer ${
+                  activeSection === 'home'
+                    ? 'bg-white text-gray-900 font-medium'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+                onClick={() => {
+                  scrollToRef(homeRef)
+                }}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
+                  width="18"
+                  height="18"
                   fill="#4b5563"
                   viewBox="0 0 256 256"
                 >
-                  <path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"></path>
+                  <path d="M219.31,108.68l-80-80a16,16,0,0,0-22.62,0l-80,80A15.87,15.87,0,0,0,32,120v96a8,8,0,0,0,8,8h64a8,8,0,0,0,8-8V160h32v56a8,8,0,0,0,8,8h64a8,8,0,0,0,8-8V120A15.87,15.87,0,0,0,219.31,108.68ZM208,208H160V152a8,8,0,0,0-8-8H104a8,8,0,0,0-8,8v56H48V120l80-80,80,80Z"></path>
                 </svg>
-                <span className="">About</span>
+
+                <span className="">Home</span>
               </div>
-              <div className="flex items-center justify-center py-1 w-28 rounded-full gap-1.5 text-gray-600">
+              <div
+                className={`flex items-center justify-center py-1 w-28 rounded-full gap-1.5 text-gray-600 cursor-pointer ${
+                  activeSection === 'projects'
+                    ? 'bg-white text-gray-900 font-medium'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+                onClick={() => {
+                  scrollToRef(projectsRef)
+                }}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="18"
@@ -42,30 +139,57 @@ export default function Home() {
                 </svg>
                 <p className="">Projects</p>
               </div>
-              <div className="flex items-center justify-center py-1 w-28 rounded-full gap-1.5 text-gray-600">
+              <div
+                className={`flex items-center justify-center py-1 w-28 rounded-full gap-1.5 text-gray-600 cursor-pointer ${
+                  activeSection === 'about'
+                    ? 'bg-white text-gray-900 font-medium'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+                onClick={() => {
+                  scrollToRef(aboutRef)
+                }}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
+                  width="16"
+                  height="16"
                   fill="#4b5563"
                   viewBox="0 0 256 256"
                 >
-                  <path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48Zm-96,85.15L52.57,64H203.43ZM98.71,128,40,181.81V74.19Zm11.84,10.85,12,11.05a8,8,0,0,0,10.82,0l12-11.05,58,53.15H52.57ZM157.29,128,216,74.18V181.82Z"></path>
+                  <path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"></path>
                 </svg>
-                <span className="">Contact</span>
+                <span className="">About</span>
               </div>
             </div>
           </nav>
-          <div className="hover:opacity-70">
-            <Link href={'https://github.com/diegofbacag'}>
-              <FaGithub size={20} />
-            </Link>
+          <div className="hover:opacity-70 ">
+            <button
+              className="flex flex-row items-center justify-center gap-1.5 bg-black px-3 py-2 rounded-full cursor-pointer"
+              onClick={() => {
+                scrollToRef(contactRef)
+              }}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                fill="#ffff"
+                viewBox="0 0 256 256"
+              >
+                <path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48Zm-96,85.15L52.57,64H203.43ZM98.71,128,40,181.81V74.19Zm11.84,10.85,12,11.05a8,8,0,0,0,10.82,0l12-11.05,58,53.15H52.57ZM157.29,128,216,74.18V181.82Z"></path>
+              </svg>
+
+              <span className="text-white">Get in Touch</span>
+            </button>
           </div>
         </div>
       </header>
       <main className="flex flex-col items-center justify-center">
         {/* Home */}
-        <section className="scroll-section items-center min-h-[80vh] flex flex-col items-center justify-center text-center max-w-4xl mx-auto py-20">
+        <section
+          ref={homeRef}
+          className="scroll-section items-center min-h-[83vh] flex flex-col items-center justify-center text-center max-w-4xl mx-auto py-20"
+        >
           <h1 className="text-6xl sm:text-7xl font-bold mb-4">{`Hi, I'm Diego`}</h1>
           <h2 className="text-2xl text-gray-700 mb-8">
             Full Stack Web Developer | Product Engineer
@@ -76,7 +200,12 @@ export default function Home() {
             users.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <button className="inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-700 transition-colors duration-300">
+            <button
+              className="inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-700 transition-colors duration-300 cursor-pointer"
+              onClick={() => {
+                scrollToRef(projectsRef)
+              }}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
@@ -89,9 +218,13 @@ export default function Home() {
               View Projects
             </button>
           </div>
+          {/* AGREGAR FLECHA QUE SENALE HACIA ABAJO Y QUE BRILLE Y SE APAGUE */}
         </section>
         {/* Projects */}
-        <section className="scroll-section w-full flex flex-col py-15 px-40">
+        <section
+          ref={projectsRef}
+          className="scroll-section w-full flex flex-col py-15 px-40 mb-20"
+        >
           <h2 className="flex text-2xl font-medium mb-6">Projects</h2>
 
           <div className=" w-full border-t border-gray-300 pt-10 mb-50">
@@ -160,7 +293,10 @@ export default function Home() {
           </div>
         </section>
         {/* About me */}
-        <section className="scroll-section w-full flex flex-col py-15 px-40">
+        <section
+          ref={aboutRef}
+          className="scroll-section w-full flex flex-col py-15 px-40"
+        >
           <h2 className="flex text-2xl font-medium mb-6">About me</h2>
           <p className="text-xl">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -174,7 +310,10 @@ export default function Home() {
         </section>
 
         {/* Contact */}
-        <section className="scroll-section items-center min-h-[80vh] flex flex-col items-center justify-center text-center max-w-4xl mx-auto py-20">
+        <section
+          ref={contactRef}
+          className="scroll-section items-center min-h-[100vh] flex flex-col items-center justify-center text-center max-w-4xl mx-auto py-20"
+        >
           <h1 className="text-6xl sm:text-7xl font-bold mb-10">{`Let's Work Together`}</h1>
 
           <form
