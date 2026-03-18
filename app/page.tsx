@@ -226,7 +226,7 @@ export default function Home() {
         {/* Projects */}
         <section
           ref={projectsRef}
-          className="scroll-section w-full flex flex-col py-15 px-40 mb-20"
+          className="scroll-section w-full flex flex-col py-15 px-40 mb-10"
         >
           <h2 className="flex text-3xl font-medium mb-6">Projects</h2>
 
