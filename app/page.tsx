@@ -193,7 +193,7 @@ export default function Home() {
         {/* Home */}
         <section
           ref={homeRef}
-          className="scroll-section items-center min-h-[85vh] flex flex-col items-center justify-center text-center max-w-4xl mx-auto py-20"
+          className="scroll-section items-center min-h-[85vh] flex flex-col items-center justify-center text-center max-w-4xl mx-auto py-20 mt-10"
         >
           <h1 className="text-6xl sm:text-7xl font-bold mb-4">{`Hi, I'm Diego`}</h1>
           <h2 className="text-2xl text-gray-700 mb-8">
