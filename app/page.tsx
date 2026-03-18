@@ -193,7 +193,7 @@ export default function Home() {
         {/* Home */}
         <section
           ref={homeRef}
-          className="scroll-section items-center min-h-[85vh] flex flex-col items-center justify-center text-center max-w-4xl mx-auto py-20 mt-10"
+          className="scroll-section items-center min-h-[85vh] flex flex-col items-center justify-center text-center max-w-4xl mx-auto py-20 mt-15"
         >
           <h1 className="text-6xl sm:text-7xl font-bold mb-4">{`Hi, I'm Diego`}</h1>
           <h2 className="text-2xl text-gray-700 mb-8">
@@ -268,6 +268,24 @@ export default function Home() {
                   Built with Next.js, TypeScript, Prisma, and deployed on
                   Vercel.
                 </p>
+                <br />
+                <Link
+                  href={'https://flouapp.vercel.app/'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-row gap-1 items-center justify-center font-medium"
+                >
+                  View Project
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    fill="#000000"
+                    viewBox="0 0 256 256"
+                  >
+                    <path d="M228,104a12,12,0,0,1-24,0V69l-59.51,59.51a12,12,0,0,1-17-17L187,52H152a12,12,0,0,1,0-24h64a12,12,0,0,1,12,12Zm-44,24a12,12,0,0,0-12,12v64H52V84h64a12,12,0,0,0,0-24H48A20,20,0,0,0,28,80V208a20,20,0,0,0,20,20H176a20,20,0,0,0,20-20V140A12,12,0,0,0,184,128Z"></path>
+                  </svg>
+                </Link>
               </div>
             </div>
           </div>
@@ -311,6 +329,23 @@ export default function Home() {
                   client, building toward launch.
                 </p>
                 <br />
+                <Link
+                  href={'https://github.com/diegofbacag/payout-guard'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-row gap-1 items-center justify-center font-medium"
+                >
+                  View Repository
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    fill="#000000"
+                    viewBox="0 0 256 256"
+                  >
+                    <path d="M228,104a12,12,0,0,1-24,0V69l-59.51,59.51a12,12,0,0,1-17-17L187,52H152a12,12,0,0,1,0-24h64a12,12,0,0,1,12,12Zm-44,24a12,12,0,0,0-12,12v64H52V84h64a12,12,0,0,0,0-24H48A20,20,0,0,0,28,80V208a20,20,0,0,0,20,20H176a20,20,0,0,0,20-20V140A12,12,0,0,0,184,128Z"></path>
+                  </svg>
+                </Link>
               </div>
             </div>
           </div>
@@ -350,6 +385,24 @@ export default function Home() {
                   Built with Python, BeautifulSoup, NLTK, Pandas, and
                   Matplotlib.
                 </p>
+                <br />
+                <Link
+                  href={'https://diegofbacag.github.io/mainproject.html'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-row gap-1 items-center justify-center font-medium"
+                >
+                  View Project
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    fill="#000000"
+                    viewBox="0 0 256 256"
+                  >
+                    <path d="M228,104a12,12,0,0,1-24,0V69l-59.51,59.51a12,12,0,0,1-17-17L187,52H152a12,12,0,0,1,0-24h64a12,12,0,0,1,12,12Zm-44,24a12,12,0,0,0-12,12v64H52V84h64a12,12,0,0,0,0-24H48A20,20,0,0,0,28,80V208a20,20,0,0,0,20,20H176a20,20,0,0,0,20-20V140A12,12,0,0,0,184,128Z"></path>
+                  </svg>
+                </Link>
               </div>
             </div>
           </div>
