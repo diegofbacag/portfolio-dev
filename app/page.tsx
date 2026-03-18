@@ -6,7 +6,7 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Ref, useEffect, useRef, useState } from 'react'
-import { FaGithub } from 'react-icons/fa'
+import { FaGithub, FaLinkedin } from 'react-icons/fa'
 
 export default function Home() {
   const homeRef = useRef(null)
@@ -173,25 +173,19 @@ export default function Home() {
               </div>
             </div>
           </nav>
-          <div className="hover:opacity-70 ">
-            <button
-              className="flex flex-row items-center justify-center gap-1.5 bg-black px-3 py-2 rounded-full cursor-pointer"
-              onClick={() => {
-                scrollToRef(contactRef)
-              }}
+          <div className="flex flex-row gap-6 items-center justify-center">
+            <Link
+              href={`https://github.com/diegofbacag`}
+              className="hover:opacity-70 h-[20px] w-[25px]"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="18"
-                height="18"
-                fill="#ffff"
-                viewBox="0 0 256 256"
-              >
-                <path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48Zm-96,85.15L52.57,64H203.43ZM98.71,128,40,181.81V74.19Zm11.84,10.85,12,11.05a8,8,0,0,0,10.82,0l12-11.05,58,53.15H52.57ZM157.29,128,216,74.18V181.82Z"></path>
-              </svg>
-
-              <span className="text-white">Get in Touch</span>
-            </button>
+              <FaGithub size={25} />
+            </Link>
+            <Link
+              href={`https://www.linkedin.com/in/diegofbacag/`}
+              className="hover:opacity-70 h-[20px] w-[25px]"
+            >
+              <FaLinkedin size={25} />
+            </Link>
           </div>
         </div>
       </header>
@@ -203,12 +197,11 @@ export default function Home() {
         >
           <h1 className="text-6xl sm:text-7xl font-bold mb-4">{`Hi, I'm Diego`}</h1>
           <h2 className="text-2xl text-gray-700 mb-8">
-            Full Stack Web Developer | Product Engineer
+            Full Stack Web Developer
           </h2>
           <p className="text-xl text-gray-600 mb-12 max-w-3xl">
-            I help non-technical founders turn product ideas into working MVPs
-            so they can launch faster, validate their idea, and attract early
-            users.
+            I build full stack financial products that turn complex data into
+            seamless user experiences and real business impact.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <button
@@ -288,10 +281,10 @@ export default function Home() {
             <div className="grid grid-cols-2 gap-10 w-full">
               <div className="relative w-full aspect-[16/10]  border border-gray-200 overflow-hidden">
                 <Image
-                  src="/img/flou-hero.png"
+                  src="/img/ado-hero.png"
                   alt="Flou app"
                   fill
-                  className="object-contain"
+                  className="object-cover scale-105"
                   sizes="(max-width: 1200px) 100vw, 1200px"
                   priority
                 />
@@ -321,23 +314,62 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className=" w-full border-t border-gray-300 pt-10">
+          <div className=" w-full border-t border-gray-300 pt-10 mb-50">
             <div className="flex flex-row gap-4">
               <p className="text-3xl text-gray-600">03</p>
               <h3 className="mb-10 text-6xl font-semibold">
-                INDUPSA Sales Dashboard – Internal Business Intelligence Tool
+                AI Stock Sentiment Analyzer
               </h3>
             </div>
             <div className="grid grid-cols-2 gap-10 w-full">
-              <div className="relative w-full aspect-[16/10] border border-gray-200 overflow-hidden">
+              <div className="relative w-full aspect-[16/10]  border border-gray-200 overflow-hidden">
                 <Image
-                  src="/img/flou-hero.png"
+                  src="/img/ai-stock-hero.jpg"
                   alt="Flou app"
                   fill
                   className="object-contain"
                   sizes="(max-width: 1200px) 100vw, 1200px"
                   priority
                 />
+              </div>
+              <div className="text-lg">
+                <p className="text-lg text-gray-700 leading-relaxed max-w-4xl mx-auto">
+                  Tracking market sentiment manually across dozens of news
+                  sources is slow and inconsistent. This tool automates that
+                  process for AI stocks.
+                </p>
+                <br />
+                <p className="text-lg text-gray-700 leading-relaxed max-w-4xl mx-auto">
+                  AI Stock Sentiment Analyzer scrapes real-time financial
+                  headlines from Finviz using Python, runs VADER sentiment
+                  analysis on each headline, and visualizes compound sentiment
+                  scores over time for the top AI companies.
+                </p>
+                <br />
+                <p className="text-lg text-gray-700 leading-relaxed max-w-4xl mx-auto">
+                  Built with Python, BeautifulSoup, NLTK, Pandas, and
+                  Matplotlib.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className=" w-full border-t border-gray-300 pt-10">
+            <div className="flex flex-row gap-4">
+              <p className="text-3xl text-gray-600">04</p>
+              <h3 className="mb-10 text-6xl font-semibold">
+                INDUPSA Sales Dashboard – Internal Business Intelligence Tool
+              </h3>
+            </div>
+            <div className="grid grid-cols-2 gap-10 w-full">
+              <div className="relative w-full aspect-[16/10] border border-gray-200 overflow-hidden">
+                {/* <Image
+                  src="/img/flou-hero.png"
+                  alt="Flou app"
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 1200px) 100vw, 1200px"
+                  priority
+                /> */}
               </div>
               <div className="text-lg">
                 <p className="text-lg  text-gray-700 leading-relaxed max-w-4xl mx-auto ">
@@ -373,23 +405,84 @@ export default function Home() {
           <h2 className="text-4xl font-bold  mb-16">About Me</h2>
 
           <p className="text-lg text-center text-gray-700 leading-relaxed max-w-4xl mx-auto mb-6">
-            I'm a product engineer based in Lima, Peru, with a background that
-            spans finance, data, and full stack development. That mix is
-            intentional. I don't just build, I help you figure out what's worth
-            building in the first place.
+            A Full Stack Developer with a background in Finance and Data
+            Analytics, specialized in building financial products that combine
+            technical depth with business understanding. I focus on turning data
+            into seamless user experiences, shipping production-ready
+            applications, and solving real money problems through clean,
+            scalable code.
           </p>
           <br />
-          <p className="text-lg text-center text-gray-700 leading-relaxed max-w-4xl mx-auto mb-6">
-            I work with non-technical founders because the MVP phase is where
-            most ideas either take off or quietly die. My job is to make sure
-            yours lands. I focus on understanding the real problem, running lean
-            experiments, and delivering a product that's been thought through,
-            not just coded up.
-          </p>
+          <h3 className="text-2xl font-bold  mb-16">Tech Stack</h3>
           <br />
-          <p className="text-lg text-center text-gray-700 leading-relaxed max-w-4xl mx-auto ">
-            End to end. From first idea to working product.
-          </p>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            <div className="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center">
+              <div className="mb-3 text-3xl">
+                <img
+                  src={
+                    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg'
+                  }
+                  className="w-10 h-10"
+                />
+              </div>
+              <div className="font-medium">TypeScript</div>
+            </div>
+            <div className="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center">
+              <div className="mb-3 text-3xl">
+                <img
+                  src={
+                    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg'
+                  }
+                  className="w-10 h-10"
+                />
+              </div>
+              <div className="font-medium">React</div>
+            </div>
+            <div className="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center">
+              <div className="mb-3 text-3xl">
+                <img
+                  src={
+                    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg'
+                  }
+                  className="w-10 h-10"
+                />
+              </div>
+              <div className="font-medium">Next.js</div>
+            </div>
+            <div className="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center">
+              <div className="mb-3 text-3xl">
+                <img
+                  src={
+                    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg'
+                  }
+                  className="w-10 h-10"
+                />
+              </div>
+              <div className="font-medium">Node.js</div>
+            </div>
+            <div className="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center">
+              <div className="mb-3 text-3xl">
+                <img
+                  src={
+                    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-original.svg'
+                  }
+                  className="w-10 h-10"
+                />
+              </div>
+              <div className="font-medium">NestJS</div>
+            </div>
+            <div className="bg-gray-50 rounded-lg p-6 flex flex-col items-center justify-center">
+              <div className="mb-3 text-3xl">
+                <img
+                  src={
+                    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg'
+                  }
+                  className="w-10 h-10"
+                />
+              </div>
+              <div className="font-medium">PostgreSQL</div>
+            </div>
+          </div>
         </section>
 
         {/* Contact */}
@@ -404,9 +497,7 @@ export default function Home() {
             action="https://formspree.io/f/meerkvan"
             method="POST"
           >
-            <label className="text-left font-medium text-gray-700">
-              First Name
-            </label>
+            <label className="text-left font-medium text-gray-700">Name</label>
             <input
               className="rounded-lg border-[1.5px] border-gray-300 h-10 mb-2 p-2 focus:outline-none focus:ring-2 focus:ring-gray-400"
               name="name"
@@ -421,7 +512,7 @@ export default function Home() {
               type="email"
             />
             <label className="text-left font-medium text-gray-700">
-              What are you building?
+              Your message:
             </label>
             <input
               className="rounded-lg border-[1.5px] border-gray-300 h-10 mb-2 p-2 focus:outline-none focus:ring-2 focus:ring-gray-400"
@@ -429,19 +520,6 @@ export default function Home() {
               id="q1"
               type="text"
             />
-            <label className="text-left font-medium text-gray-700">
-              Where are you right now?
-            </label>
-            <select
-              className="rounded-lg border-[1.5px] border-gray-300 h-10 mb-2 p-2 focus:outline-none focus:ring-2 focus:ring-gray-400"
-              name="q2"
-              id="q2"
-            >
-              <option value="idea">Just an idea</option>
-              <option value="prototype">Already have a prototype</option>
-              <option value="concept">Validated concept</option>
-              <option value="users">Have paying users</option>
-            </select>
 
             <div className="flex flex-col gap-1 mt-4">
               <button className="inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-700 transition-colors duration-300 ">
